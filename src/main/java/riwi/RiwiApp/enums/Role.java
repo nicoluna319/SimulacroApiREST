@@ -1,4 +1,4 @@
-package riwi.RiwiApp.utils.enums;
+package riwi.RiwiApp.enums;
 
 public enum Role {
     STUDENT,

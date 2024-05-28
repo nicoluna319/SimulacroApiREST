@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity(name = "submissions")
-public class submissionsEntity {
+public class SubmissionsEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class submissionsEntity {
         name = "assignments_id",
         referencedColumnName = "id"
     )
-    private assignmentsEntity assignments;
+    private AssignmentsEntity assignments;
 
 
 }
