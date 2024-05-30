@@ -1,6 +1,7 @@
 package riwi.RiwiApp.api.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +21,7 @@ public class CoursesReq {
     @Size(max = 1000, message = "La descripción del curso no puede tener más de 1000 caracteres")
     private String courseDescription;
 
-    //AQUI QUEDÉ
+    @NotNull(message = "El ID del instructor es requerido")
+    private Long instructorId;
+    
 }
