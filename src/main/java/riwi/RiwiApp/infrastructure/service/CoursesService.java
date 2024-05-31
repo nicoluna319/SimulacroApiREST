@@ -2,11 +2,14 @@ package riwi.RiwiApp.infrastructure.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import riwi.RiwiApp.api.dto.request.CoursesReq;
 import riwi.RiwiApp.api.dto.response.CoursesResp;
+import riwi.RiwiApp.domain.entities.CoursesEntity;
 import riwi.RiwiApp.domain.repositories.CoursesRepository;
 import riwi.RiwiApp.infrastructure.abstract_service.ICourses;
 import riwi.RiwiApp.utils.SortType;
@@ -45,9 +48,42 @@ public class CoursesService implements ICourses {
     @Override
     public Page<CoursesResp> getAll(int page, int size, SortType sortType) {
 
-        throw new UnsupportedOperationException("Unimplemented method 'getAll'");
+       if (page < 0)
+            page = 0;
+
+        PageRequest pagination = null;
+
+        switch (sortType) {
+            case NONE -> pagination = PageRequest.of(page, size);
+            case ASC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).ascending());
+            case DESC -> pagination = PageRequest.of(page, size, Sort.by(FIELD_BY_SORT).descending());
+        }
+
+        return this.coursesRepository.findAll(pagination)
+                .map(this::entityToResponse);
     }
 
-    //AQUI QUEDÉ
+
+    private CoursesResp entityToResponse(CoursesEntity entity) {
+
+
+        return CoursesResp.builder()
+               .courseName(entity.getCourseName())
+               .courseDescription(entity.getDescription())
+               .instructorId(entity.getInstructor().getId())
+               .build();
+
+    }
+
+    private CoursesEntity requestToEntity(CoursesReq request) {
+
+        return CoursesEntity.builder()
+               .courseName(request.getCourseName())
+               .description(request.getCourseDescription())
+               .instructor(request.getInstructorId())
+               .build();
+     }
+
+    // AQUI QUEDÉ
     
 }
