@@ -48,7 +48,7 @@ public class CoursesService implements ICourses {
     @Override
     public Page<CoursesResp> getAll(int page, int size, SortType sortType) {
 
-       if (page < 0)
+        if (page < 0)
             page = 0;
 
         PageRequest pagination = null;
@@ -68,22 +68,22 @@ public class CoursesService implements ICourses {
 
 
         return CoursesResp.builder()
-               .courseName(entity.getCourseName())
-               .courseDescription(entity.getDescription())
-               .instructorId(entity.getInstructor().getId())
-               .build();
+        .courseName(entity.getCourseName())
+        .courseDescription(entity.getDescription())
+        .instructorId(entity.getInstructor().getId())
+        .build();
 
     }
 
-    private CoursesEntity requestToEntity(CoursesReq request) {
+//     private CoursesEntity requestToEntity(CoursesReq request) {
 
-        return CoursesEntity.builder()
-               .courseName(request.getCourseName())
-               .description(request.getCourseDescription())
-               .instructor(request.getInstructorId())
-               .build();
-     }
+//         return CoursesEntity.builder()
+//             .courseName(request.getCourseName())
+//             .description(request.getCourseDescription())
+//             // .instructor(request.getInstructorId())
+//             .build();
+// }
 
-    // AQUI QUEDÉ
+
     
 }

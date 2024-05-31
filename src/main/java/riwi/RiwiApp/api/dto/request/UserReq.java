@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import riwi.RiwiApp.enums.Role;
+import riwi.RiwiApp.utils.enums.Role;
 
 @Data
 @Builder

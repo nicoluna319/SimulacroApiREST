@@ -18,7 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import riwi.RiwiApp.enums.Role;
+import riwi.RiwiApp.utils.enums.Role;
 
 @Data
 @Builder
